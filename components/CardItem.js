@@ -1,12 +1,6 @@
 import Image from 'next/legacy/image';
 import React, { useEffect, useState } from 'react';
-
-const DELAY_FLIPPED = {
-  easy: 1000,
-  medium: 2300,
-  hard: 3500,
-  expert: 6000
-};
+import { DELAY_FLIPPED } from '../utils/GAME';
 
 export default function CardItem({ onClick, isFlip, item, isStart, level }) {
   const [isFliped, setIsFlipped] = useState(false);

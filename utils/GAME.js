@@ -1,4 +1,4 @@
-const generateRandomNum = () => Math.floor(Math.random() * 8) + 1;
+const generateRandomNum = () => Math.floor(Math.random() * 34) + 1;
 
 const generateItem = () => {
   const uuid = generateRandomNum();
@@ -34,4 +34,18 @@ export const GENERATE_RANDOM_IMAGES = (count) => {
   }
 
   return duplicatItems(randomImages);
+};
+
+export const DELAY_FLIPPED = {
+  easy: 1000,
+  medium: 3000,
+  hard: 6000,
+  expert: 10000
+};
+
+export const CARD_COUNT_TEMPLATE = {
+  easy: 4,
+  medium: 8,
+  hard: 12,
+  expert: 16
 };

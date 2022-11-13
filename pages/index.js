@@ -5,14 +5,7 @@ import HighScore from '../components/HighScore';
 import PopUpStartGame from '../components/PopUpStartGame';
 import StopWatch from '../components/Stopwatch';
 import { congratulations } from '../components/WonEffect';
-import { GENERATE_RANDOM_IMAGES } from '../utils/GAME';
-
-const CARD_COUNT_TEMPLATE = {
-  easy: 4,
-  medium: 8,
-  hard: 12,
-  expert: 16
-};
+import { CARD_COUNT_TEMPLATE, GENERATE_RANDOM_IMAGES } from '../utils/GAME';
 
 export default function Home() {
   const router = useRouter();
@@ -75,6 +68,7 @@ export default function Home() {
   }, [currentFlip]);
 
   useEffect(() => {
+    if (!isNewGame) return;
     setCurrentFlip([]);
     setFlipItems([]);
     setRandomImages(GENERATE_RANDOM_IMAGES(cardCount));
@@ -87,6 +81,10 @@ export default function Home() {
     setRandomImages(GENERATE_RANDOM_IMAGES(count || 8));
   }, [router]);
 
+  useEffect(() => {
+    console.log(randomImages);
+  }, [randomImages]);
+
   return (
     <>
       {popUpActive === 'new-game' && (
@@ -98,6 +96,7 @@ export default function Home() {
         isReset={isNewGame}
         handleGameIsRunning={handleGameIsRunning}
         highScore={highScore}
+        level={router.query?.level || 'easy'}
       />
       <div className="flex justify-between items-center gap-4">
         <HighScore score={highScore} onReset={handleResetScore} isFinished={isFinishGame} />
